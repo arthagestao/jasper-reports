@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="QueryReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="515"
+              leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50">
+
+    <property name="net.sf.jasperreports.export.pdf.odd.page.offset.x" value="10"/>
+    <property name="net.sf.jasperreports.export.pdf.even.page.offset.x" value="-10"/>
+
+    <parameter name="ReportTitle" class="java.lang.String">
+        <defaultValueExpression><![CDATA["TEST REPORT"]]></defaultValueExpression>
+    </parameter>
+
+    <queryString>
+        <![CDATA[SELECT help_category_id as id, name as value FROM help_category ORDER BY help_category_id]]>
+    </queryString>
+
+    <field name="id" class="java.lang.Integer"/>
+    <field name="value" class="java.lang.String"/>
+
+    <title>
+        <band height="50">
+            <line>
+                <reportElement x="0" y="0" width="515" height="1" forecolor="#000000"/>
+            </line>
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="10" width="515" height="30"/>
+                <textElement textAlignment="Center">
+                    <font size="22"/>
+                    <paragraph lineSpacing="Single"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{ReportTitle}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <pageHeader>
+        <band height="20">
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="5" width="50" height="15" forecolor="#FFFFFF" backcolor="#333333"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="50" y="5" width="465" height="15" forecolor="#FFFFFF" backcolor="#333333"/>
+                <text><![CDATA[VALUE]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="4" width="50" height="15"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="55" y="4" width="200" height="15"/>
+                <textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+            </textField>
+            <line><reportElement positionType="Float" x="0" y="19" width="515" height="1" forecolor="#808080"/></line>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="40">
+            <printWhenExpression><![CDATA[$P{IS_IGNORE_PAGINATION}.booleanValue()?Boolean.FALSE:Boolean.TRUE]]></printWhenExpression>
+            <line>
+                <reportElement x="0" y="10" width="515" height="1"/>
+            </line>
+            <textField>
+                <reportElement x="200" y="20" width="80" height="15"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page " + String.valueOf($V{PAGE_NUMBER}) + " of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="280" y="20" width="75" height="15"/>
+                <textElement textAlignment="Left"/>
+                <textFieldExpression><![CDATA[" " + String.valueOf($V{PAGE_NUMBER})]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+    <summary>
+        <band height="60">
+            <textField isStretchWithOverflow="true">
+                <reportElement x="175" y="20" width="165" height="15"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA["There were " + String.valueOf($V{REPORT_COUNT}) + " record(s) on this report."]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+
+</jasperReport>
