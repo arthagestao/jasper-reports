@@ -1,6 +1,7 @@
 # JasperReports for PHP
 
-Easy reports for PHP using JasperPHP
+Easy reports for PHP using JasperStarter
+
 
 ## Author
 
