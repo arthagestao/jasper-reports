@@ -3,7 +3,7 @@ namespace JasperPHP;
 
 class JasperPHP
 {
-    protected $executable = __DIR__ . '/../bin/JasperStarter/bin/jasperstarter';
+    protected $executable;
     protected $command;
     protected $redirectOutput;
     protected $runInBackground;
@@ -37,6 +37,8 @@ class JasperPHP
 
     public function __construct($resource_dir = false)
     {
+        $this->executable = __DIR__ . '/../bin/JasperStarter/bin/jasperstarter';
+        
         if (stripos(PHP_OS, 'WIN') === 0) {
             $this->windows = true;
         }
