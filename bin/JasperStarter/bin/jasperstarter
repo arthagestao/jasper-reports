@@ -23,9 +23,4 @@ else
 fi
 
 #SCRIPTPATH="$(dirname $0)"
-if [ -z ${JAVA_HOME} ]
-then
-    java -jar "$HOME_FOLDER/lib/jasperstarter.jar" "$@"
-else 
-    $JAVA_HOME/bin/java -jar "$HOME_FOLDER/lib/jasperstarter.jar" "$@"
-fi
+$JAVA_HOME/bin/java -jar "$HOME_FOLDER/lib/jasperstarter.jar" "$@"
