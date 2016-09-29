@@ -1,6 +1,6 @@
 # Jasper Reports for PHP
 
-Easy jasper reports for PHP using JasperStarter
+Easy reports for PHP using JasperStarter
 
 ## Installation
 
