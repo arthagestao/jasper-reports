@@ -13,7 +13,7 @@ class JasperPHP
      * Path to report resource dir or jar file
      * @var string
      */
-    protected $resource_directory;
+    public $resource_directory;
 
     /**
      * Valid report formats
@@ -38,7 +38,7 @@ class JasperPHP
     public function __construct($resource_dir = false)
     {
         $this->executable = __DIR__ . '/../bin/JasperStarter/bin/jasperstarter';
-        
+
         if (stripos(PHP_OS, 'WIN') === 0) {
             $this->windows = true;
         }
@@ -59,10 +59,10 @@ class JasperPHP
     {
         $input_file = $this->validate($input_file);
 
-        $command = "{$this->executable} compile {$input_file}";
+        $command = "{$this->executable} compile \"{$input_file}\"";
 
         if ($output_file !== false) {
-            $command .= ' -o ' . $output_file;
+            $command .= ' -o "' . $output_file . '"';
         }
 
         $this->redirectOutput = $redirect_output;
@@ -99,10 +99,10 @@ class JasperPHP
             }
         }
 
-        $command = "{$this->executable} process $input_file";
+        $command = "{$this->executable} process \"$input_file\"";
 
         if ($output_file !== false) {
-            $command .= ' -o ' . $output_file;
+            $command .= ' -o "' . $output_file . '"';
         }
 
         $command .= ' -f ' . implode(' ', $format);
@@ -113,7 +113,7 @@ class JasperPHP
         if (count($parameters) > 0) {
             $command .= ' -P';
             foreach ($parameters as $key => $value) {
-                $command .= ' ' . $key . '=' . $value;
+                $command .= ' ' . $key . '="' . $value . '"';
             }
         }
 
@@ -183,7 +183,7 @@ class JasperPHP
     {
         $input_file = $this->validate($input_file);
 
-        $command = "{$this->executable} list_parameters {$input_file}";
+        $command = "{$this->executable} list_parameters \"{$input_file}\"";
         $this->command = escapeshellcmd($command);
 
         return $this;
