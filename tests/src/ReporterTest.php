@@ -87,16 +87,16 @@ class ReporterTest extends \PHPUnit_Framework_TestCase
         $this->reporter->connection([
             'port' => 3306,
             'driver' => 'mysql',
-            'host' => 'mysql',
+            'host' => '192.168.56.101',
             'username' => 'root',
-            'password' => 'default',
+            'password' => 'vortice',
             'database' => 'mysql'
         ]);
 
         $report = $this->reporter->generate("ds_connetion", []);
 
         //$base64 = "data:application/pdf;base64," . base64_encode($report);
-        //exec("start chrome.exe $base64");
+        // exec("start chrome.exe $base64");
 
         static::assertNotNull($report);
     }
