@@ -28,6 +28,22 @@ class Reporter
     }
 
     /**
+     * @return JasperPHP
+     */
+    public function getJasper()
+    {
+        return $this->jasper;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReportDirectory()
+    {
+        return $this->reportDirectory;
+    }
+
+    /**
      * Generate a report with the specified name and parameters
      *
      * @param array [string]|string $files

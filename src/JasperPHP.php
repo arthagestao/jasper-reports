@@ -218,6 +218,10 @@ class JasperPHP
             $message = "Your report has an error and couldn't be processed! Try to output the command using the function `output();` and run it manually in the console.";
             if ($output[0] !== null) {
                 $message = "[JasperStarter] {$output[0]}";
+                for ($i = 1; $i < count($output); $i++) {
+                    if ($i == 1) $message .= " \n";
+                    $message .= $output[$i] . "\n";
+                }
             }
             throw new \Exception($message, 1);
         }
